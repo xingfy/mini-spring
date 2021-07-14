@@ -1,4 +1,4 @@
-package org.springframework.minispring.factory;
+package org.springframework.minispring.beans;
 
 /**
  * @author xingfengyuan

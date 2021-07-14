@@ -1,8 +1,8 @@
-package org.springframework.minispring.factory.support;
+package org.springframework.minispring.beans.factory.support;
 
-import org.springframework.minispring.factory.BeanFactory;
-import org.springframework.minispring.factory.BeansException;
-import org.springframework.minispring.factory.config.BeanDefinition;
+import org.springframework.minispring.beans.factory.BeanFactory;
+import org.springframework.minispring.beans.BeansException;
+import org.springframework.minispring.beans.factory.config.BeanDefinition;
 
 /**
  * @author xingfengyuan

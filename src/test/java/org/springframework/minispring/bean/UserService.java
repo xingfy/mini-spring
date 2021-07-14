@@ -6,20 +6,27 @@ package org.springframework.minispring.bean;
  */
 public class UserService {
 
-    private String name;
+    private String uid;
 
-    public UserService(String name) {
-        this.name = name;
-    }
+    private UserDao userDao;
 
     public void queryUserInfo() {
-        System.out.println("查询用户信息: " + name);
+        System.out.println("查询用户信息: " + userDao.queryUserName(uid));
     }
 
-    @Override
-    public String toString() {
-        return "UserService{" +
-                "name='" + name + '\'' +
-                '}';
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }

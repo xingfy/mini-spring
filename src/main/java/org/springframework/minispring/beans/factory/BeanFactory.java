@@ -1,9 +1,6 @@
-package org.springframework.minispring.factory;
+package org.springframework.minispring.beans.factory;
 
-import org.springframework.minispring.factory.config.BeanDefinition;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.minispring.beans.BeansException;
 
 /**
  * 代表了bean对象的工厂，可以存放bean定义到Map中以及获取

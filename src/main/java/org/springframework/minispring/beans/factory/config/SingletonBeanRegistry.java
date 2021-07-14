@@ -1,4 +1,4 @@
-package org.springframework.minispring.factory.config;
+package org.springframework.minispring.beans.factory.config;
 
 /**
  * 单例注册接口
