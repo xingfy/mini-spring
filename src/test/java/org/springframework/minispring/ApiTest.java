@@ -1,14 +1,5 @@
 package org.springframework.minispring;
 
-import org.junit.Test;
-import org.springframework.minispring.bean.UserDao;
-import org.springframework.minispring.bean.UserService;
-import org.springframework.minispring.beans.PropertyValue;
-import org.springframework.minispring.beans.PropertyValues;
-import org.springframework.minispring.beans.factory.config.BeanDefinition;
-import org.springframework.minispring.beans.factory.config.BeanReference;
-import org.springframework.minispring.beans.factory.support.DefaultListableBeanFactory;
-
 /**
  * @author xingfengyuan
  * @date 2021/7/14
@@ -70,20 +61,28 @@ public class ApiTest {
 
      */
 
+    /*
     @Test
     public void test_BeanFactory() {
+        // 初始化BeanFactory
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
+        // UserDao注册
         beanFactory.registerBeanDefinition("userDao", new BeanDefinition(UserDao.class));
 
+        // UserService设置属性[uid, userDao]
         PropertyValues propertyValues = new PropertyValues();
         propertyValues.addPropertyValue(new PropertyValue("uid", "10001"));
         propertyValues.addPropertyValue(new PropertyValue("userDao", new BeanReference("userDao")));
 
+        // UserService注入bean
         BeanDefinition beanDefinition = new BeanDefinition(UserService.class, propertyValues);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
+        // UserService获取bean
         UserService userService = (UserService) beanFactory.getBean("userService");
         userService.queryUserInfo();
     }
+
+     */
 }

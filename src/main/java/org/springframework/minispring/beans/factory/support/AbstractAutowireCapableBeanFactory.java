@@ -2,10 +2,10 @@ package org.springframework.minispring.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
 import org.springframework.minispring.beans.BeansException;
+import org.springframework.minispring.beans.factory.config.BeanReference;
 import org.springframework.minispring.beans.PropertyValue;
 import org.springframework.minispring.beans.PropertyValues;
 import org.springframework.minispring.beans.factory.config.BeanDefinition;
-import org.springframework.minispring.beans.factory.config.BeanReference;
 
 import java.lang.reflect.Constructor;
 
@@ -63,6 +63,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                     value = getBean(beanReference.getBeanName());
                 }
 
+                // 属性填充
                 BeanUtil.setFieldValue(bean, name, value);
             }
         } catch (Exception e) {
