@@ -4,13 +4,15 @@ import cn.hutool.core.lang.Assert;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * @author xingfengyuan
  * @date 2021/7/14
  */
-public class UrlResource implements Resource{
+public class UrlResource implements Resource {
 
     private final URL url;
 
@@ -21,6 +23,14 @@ public class UrlResource implements Resource{
 
     @Override
     public InputStream getInputStream() throws IOException {
-        return null;
+        URLConnection con = this.url.openConnection();
+        try {
+            return con.getInputStream();
+        } catch (IOException e) {
+            if (con instanceof HttpURLConnection) {
+                ((HttpURLConnection) con).disconnect();
+            }
+            throw e;
+        }
     }
 }

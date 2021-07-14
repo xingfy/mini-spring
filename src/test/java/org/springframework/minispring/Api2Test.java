@@ -71,7 +71,7 @@ public class Api2Test {
 
     @Test
     public void test_url() throws IOException {
-        Resource resource = resourceLoader.getResource("https://github.com/xingfy/mini-spring/important.properties");
+        Resource resource = resourceLoader.getResource("https://raw.githubusercontent.com/xingfy/mini-spring/main/src/test/java/resources/important.properties");
         InputStream inputStream = resource.getInputStream();
         String content = IoUtil.readUtf8(inputStream);
         System.out.println(content);
