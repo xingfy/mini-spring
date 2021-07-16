@@ -8,10 +8,20 @@ public class UserService {
 
     private String uid;
 
+    private String company;
+
+    private String location;
+
     private UserDao userDao;
 
     public String queryUserInfo() {
-        System.out.println("查询用户信息: " + userDao.queryUserName(uid));
+        System.out.println(
+                "UserService{" +
+                        "uid='" + uid + '\'' +
+                        ", company='" + company + '\'' +
+                        ", location='" + location + '\'' +
+                        ", userDao=" + userDao +
+                        '}');
         return userDao.queryUserName(uid);
     }
 
@@ -23,6 +33,22 @@ public class UserService {
         this.uid = uid;
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public UserDao getUserDao() {
         return userDao;
     }
@@ -30,4 +56,5 @@ public class UserService {
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
+
 }

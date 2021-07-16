@@ -1,6 +1,7 @@
 package org.springframework.minispring.beans.factory.support;
 
 import org.springframework.minispring.beans.BeansException;
+import org.springframework.minispring.beans.factory.ConfigurableListableBeanFactory;
 import org.springframework.minispring.beans.factory.config.BeanDefinition;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.Map;
  * @author xingfengyuan
  * @date 2021/7/14
  */
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
@@ -22,6 +23,18 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     @Override
     public boolean containsBeanDefinition(String beanName) {
         return beanDefinitionMap.containsKey(beanName);
+    }
+
+    @Override
+    public <T> Map<String, T> getBeansOfType(Class<T> type) throws BeansException {
+        Map<String, T> result = new HashMap<>();
+        beanDefinitionMap.forEach((beanName, beanDefinition) -> {
+            Class beanClass = beanDefinition.getBeanClass();
+            if (type.isAssignableFrom(beanClass)) {
+                result.put(beanName, (T) getBean(beanName));
+            }
+        });
+        return result;
     }
 
     @Override
@@ -37,5 +50,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
         }
 
         return beanDefinition;
+    }
+
+    @Override
+    public void preInstantiateSingletons() throws BeansException {
+        beanDefinitionMap.keySet().forEach(this::getBean);
     }
 }
