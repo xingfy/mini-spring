@@ -1,10 +1,13 @@
 package org.springframework.minispring.bean;
 
+import org.springframework.minispring.beans.DisposableBean;
+import org.springframework.minispring.beans.InitializingBean;
+
 /**
  * @author xingfengyuan
  * @date 2021/7/14
  */
-public class UserService {
+public class UserService implements InitializingBean, DisposableBean {
 
     private String uid;
 
@@ -13,6 +16,16 @@ public class UserService {
     private String location;
 
     private UserDao userDao;
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("执行: UserService.destroy");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("执行: UserService.afterPropertiesSet");
+    }
 
     public String queryUserInfo() {
         System.out.println(

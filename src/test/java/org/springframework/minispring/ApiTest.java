@@ -1,5 +1,9 @@
 package org.springframework.minispring;
 
+import org.junit.Test;
+import org.springframework.minispring.bean.UserService;
+import org.springframework.minispring.context.support.ClassPathXmlApplicationContext;
+
 /**
  * @author xingfengyuan
  * @date 2021/7/14
@@ -85,4 +89,14 @@ public class ApiTest {
     }
 
      */
+
+    @Test
+    public void test_xml() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        applicationContext.registerShutdownHook();
+
+        UserService userService = applicationContext.getBean("userService", UserService.class);
+        String result = userService.queryUserInfo();
+        System.out.println("测试结果: " + result);
+    }
 }

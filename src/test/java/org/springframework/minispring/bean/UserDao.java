@@ -11,10 +11,22 @@ public class UserDao {
 
     private static Map<String, String> hashMap = new HashMap<>();
 
-    static {
+//    static {
+//        hashMap.put("10001", "小妖");
+//        hashMap.put("10002", "阿毛");
+//        hashMap.put("10003", "八杯水");
+//    }
+
+    public void initDataMethod() {
+        System.out.println("执行: init-method");
         hashMap.put("10001", "小妖");
         hashMap.put("10002", "阿毛");
         hashMap.put("10003", "八杯水");
+    }
+
+    public void destroyDataMethod() {
+        System.out.println("执行: destroy-method");
+        hashMap.clear();
     }
 
     public String queryUserName(String uid) {
