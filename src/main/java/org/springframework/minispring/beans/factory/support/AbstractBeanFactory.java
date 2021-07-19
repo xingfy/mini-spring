@@ -4,6 +4,7 @@ import org.springframework.minispring.beans.BeansException;
 import org.springframework.minispring.beans.factory.config.BeanDefinition;
 import org.springframework.minispring.beans.factory.config.BeanPostProcessor;
 import org.springframework.minispring.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.minispring.util.ClassUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.List;
  * @date 2021/7/14
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
@@ -57,6 +60,10 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
      */
     public List<BeanPostProcessor> getBeanPostProcessors() {
         return this.beanPostProcessors;
+    }
+
+    public ClassLoader getBeanClassLoader() {
+        return beanClassLoader;
     }
 }
 
